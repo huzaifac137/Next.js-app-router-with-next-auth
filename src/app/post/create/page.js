@@ -1,12 +1,20 @@
 "use client";
 import React, { useState } from "react";
 import styles from "../../page.module.css";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 function page() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [responseMsg, setResponseMsg] = useState("");
+  const { data } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/signin");
+    },
+  });
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -65,6 +73,10 @@ function page() {
     >
       {isLoading === true && <h2>Loading...</h2>}
       {responseMsg !== "" && <h2>{responseMsg}</h2>}
+
+      <h3>You are logged in as :{data?.user?.name} </h3>
+      <h3 style={{ marginBottom: "20px" }}>email : {data?.user?.email} </h3>
+
       <input
         className={styles.input}
         type="text"

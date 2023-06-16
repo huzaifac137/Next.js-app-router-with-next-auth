@@ -6,6 +6,10 @@ import { getAllEvents } from "../../dummy-data";
 import fs from "fs/promises";
 import path from "path";
 import NavBar from "../../components/navBar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import Logout from "../../components/Logout";
 
 export const metadata = {
   title: "Huzaifa",
@@ -40,11 +44,19 @@ async function fetchData() {
 }
 
 async function Home(props) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/signin");
+  }
+
   const products = await fetchData();
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        {session ? <Logout /> : null}
+        <h3>Logged in as : {session?.user?.name} </h3>
+        <h4>email : {session?.user.email} </h4>
         <h1 style={{ marginBottom: "30px" }}>All Products</h1>
 
         {typeof products === "string" ? (

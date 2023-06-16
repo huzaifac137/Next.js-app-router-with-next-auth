@@ -12,7 +12,7 @@ function NavBar() {
         display: "flex",
         alignItems: "center",
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         margin: "0 auto",
         width: "100%",
         marginTop: "50px",
