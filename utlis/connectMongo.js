@@ -1,13 +1,23 @@
 import mongoose, { Schema } from "mongoose";
 
-const connectToDB = async () => {
-  try {
-    mongoose.set("strictQuery", true);
-    await mongoose.connect("mongodb://127.0.0.1:27017"); // replace with your mongodb string
-    console.log("CONNECTED TO DB!");
-  } catch (error) {
-    console.log("ERROR", error);
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function connectToDB() {
+  if (cached.conn) {
+    return cached.conn;
   }
-};
+
+  if (!cached.promise) {
+    mongoose.set("strictQuery", true);
+    cached.promise = await mongoose.connect("mongodb://127.0.0.1:27017/nextjs");
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
 
 export default connectToDB;

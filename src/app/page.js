@@ -46,7 +46,7 @@ async function fetchData() {
 async function Home(props) {
   const session = await getServerSession(authOptions);
   if (!session) {
-    redirect("/signin");
+    redirect("/api/auth/signin");
   }
 
   const products = await fetchData();

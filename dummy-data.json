@@ -1,0 +1,17 @@
+{
+    "products" : [{
+        "id": "e1",
+        "title": "Programming for everyone"
+       
+      },
+      {
+        "id": "e2",
+        "title": "Networking for introverts"
+       
+      },
+      {
+        "id": "e3",
+        "title": "Networking for extroverts"
+       
+      }]
+}

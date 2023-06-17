@@ -5,13 +5,19 @@ import { getToken } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
 
 export async function POST(request) {
+  if (request.method !== "POST") {
+    return NextResponse.json({ message: "invalid request" }, { status: 409 });
+  }
   await connectToDB();
 
   const token = await getToken({ req: request });
 
-  console.log(token);
+  let decoded;
+  if (token.idToken) {
+    decoded = jwt.decode(token.idToken);
+    console.log(decoded);
+  }
 
- 
   const { title, price } = await request.json();
 
   try {

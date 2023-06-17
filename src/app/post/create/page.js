@@ -12,7 +12,7 @@ function page() {
   const { data } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/signin");
+      redirect("/api/auth/signin");
     },
   });
 
