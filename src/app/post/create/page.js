@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "../../page.module.css";
+import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
@@ -78,20 +78,22 @@ function page() {
       <h3 style={{ marginBottom: "20px" }}>email : {data?.user?.email} </h3>
 
       <input
-        className={styles.input}
+        className={styles.inputField}
         type="text"
         placeholder="title"
         value={title}
         onChange={handleTitle}
       />
       <input
-        className={styles.input}
+        className={styles.inputField}
         type="number"
         placeholder="price"
         value={price}
         onChange={handlePrice}
       />
-      <button onClick={postData}>POST DATA</button>
+      <button className={styles.btn} onClick={postData}>
+        POST DATA
+      </button>
     </div>
   );
 }

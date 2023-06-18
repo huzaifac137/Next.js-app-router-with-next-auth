@@ -76,7 +76,12 @@ async function Home(props) {
               <Link
                 href={{
                   pathname: `/post/${item._id}`,
-                  query: { title: item.title, price: item.price },
+                  query: {
+                    title: item.title,
+                    price: item.price,
+                    creatorName: item.creatorName,
+                    creator: item.creator,
+                  },
                 }}
               >
                 Proceed

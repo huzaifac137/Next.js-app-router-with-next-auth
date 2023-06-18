@@ -5,6 +5,7 @@ import googleProvider from "next-auth/providers/google";
 import connectToDB from "../../../../../utlis/connectMongo";
 import userModal from "../../../../../utlis/model/user";
 import bcrypt from "bcryptjs";
+import JWT from "jsonwebtoken";
 
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -77,7 +78,22 @@ export const authOptions = {
         token.idToken = account.id_token;
       }
 
+      if (!account) {
+        token.jwt = JWT.sign(
+          { name: token.name, email: token.email, sub: token.sub },
+          process.env.NEXTAUTH_SECRET,
+          {},
+        );
+      }
+
       return token;
+    },
+
+    async session({ session, user, token }) {
+      if (!session.sub) {
+        session.sub = token.sub;
+      }
+      return session;
     },
   },
 };

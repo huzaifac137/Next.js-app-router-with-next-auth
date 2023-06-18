@@ -31,12 +31,6 @@
   gap: 50px;
 }
 
-.input {
-  outline: none;
-  border: none;
-  border-bottom: 1px solid grey;
-}
-
 .description a {
   display: flex;
   justify-content: center;
