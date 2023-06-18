@@ -67,9 +67,10 @@ async function Home(props) {
           products?.map((item) => (
             <div key={item._id} className={styles.product}>
               <Image
+                className={styles.image}
                 src={"https://picsum.photos/200/300"}
-                height={100}
-                width={100}
+                width={200}
+                height={200}
               />
               <h2>{item.title}</h2>
               <h3>{item.price}</h3>

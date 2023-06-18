@@ -15,3 +15,22 @@
   border-radius: 6px;
   border: none;
 }
+
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .inputField {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 899px) {
+  .inputField {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .inputField {
+    max-width: 70%;
+    width: 60%;
+  }
+}

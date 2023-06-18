@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 function page() {
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [responseMsg, setResponseMsg] = useState("");
   const { data } = useSession({
@@ -25,7 +25,7 @@ function page() {
   };
 
   async function postData() {
-    if (title === "" || price === 0) {
+    if (title === "" || price === "") {
       alert("Plase insert title and price correctly");
       return;
     }

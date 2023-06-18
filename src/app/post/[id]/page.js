@@ -80,9 +80,9 @@ function page({}) {
       ) : (
         <div className={styles.card}>
           {" "}
-          <h2>{query.title}</h2>
-          <h3 style={{ color: "green" }}>{query.price}</h3>
-          <h4>{query.creatorName}</h4>
+          <h2> "name" : "{query.title}"</h2>
+          <h3 style={{ color: "green" }}> "price" : "{query.price}"</h3>
+          <h4> "creator" : "{query.creatorName}"</h4>
           {query.creator === session?.sub ? (
             <button onClick={handleDelete}>Delete</button>
           ) : null}
